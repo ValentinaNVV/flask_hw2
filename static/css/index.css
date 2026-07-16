@@ -1,0 +1,52 @@
+/* 1. Фон сайта */
+body {
+    background-color: #c5dcf3;
+    font-family: Arial, sans-serif;
+}
+
+/* 2. Шрифты и размеры для ВСЕХ текстов */
+h1 {
+    font-size: 32px;
+    font-family: 'Georgia', serif;
+}
+
+h2 {
+    font-size: 24px;
+    font-family: 'Georgia', serif;
+}
+
+p, li, a {
+    font-size: 16px;
+}
+
+/* 3. Правильный размер изображения */
+img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;   /* обрезает фото без искажения пропорций */
+    border-radius: 50%;  /* круглое фото, как в блогах */
+}
+
+/* 4. Расположение компонентов */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+div {
+    max-width: 700px;
+    margin: 20px auto;   /* центрирует блок по горизонтали */
+    padding: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;  /* убирает двойные линии между ячейками */
+    margin: 20px auto;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}

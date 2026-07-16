@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой блог</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+     <div class="header">
+        <h1>Валентина, о себе</h1>
+        <img src="{{ url_for('static', filename='img/photo.jpg') }}" alt="Моё фото">
+    </div>
+
+    <div>
+        <h2>О себе</h2>
+        <p>Я учусь на курсе Python-разработчик</p>
+    </div>
+
+    <div>
+        <h2>Изученные разделы</h2>
+        <ul>
+            <li>Основы синтаксиса языка программирования Python</li>
+            <li>Система контроля версий Git</li>
+            <li>Linux: основы процессов и потоков</li>
+            <li>Алгоритмы и структуры данных</li>
+            <li>Базы данных</li>
+            <li>Фреймворк Flask</li>
+        </ul>
+    </div>
+
+    <div>
+        <h2>Достижения</h2>
+        <p>Курс закрыт на <strong>70%</strong> осталось 2 раздела и <em>дипломный проект</em></p>
+    </div>
+
+    <div>
+        <h2>Контакты</h2>
+        <a href="https://github.com/ValentinaNVV" target="_blank">Мой GitHub</a>
+    </div>
+    
+    <div>
+    <h2>Прогресс по темам Основы Flask</h2>
+    <table>
+        <tr>
+            <th>Основы Flask</th>
+            <th>HTML & CSS</th>
+            <th>Шаблоны и формы в Flask</th>
+            <th>Основы Flask-SQLAlchemy. Работа с базами данных в Flask</th>
+            <th>Авторизация в Flask</th>
+            <th>Работа с REST API</th>
+            <th>Итоговый проект</th>
+            <th>Итоговая аттестация</th>
+        </tr>
+        <tr>
+            <td>100%</td>
+            <td>100%</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>100%</td>
+            <td>99%</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Легко дались базовые концепции Flask</td>
+            <td>Понравилась работа с CSS-селекторами</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
