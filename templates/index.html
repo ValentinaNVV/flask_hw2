@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой блог</title>
+    <title>{% block title %} Мой блог{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 </head>
 <body>
+    {% block content %}
      <div class="header">
         <h1>Валентина, о себе</h1>
         <img src="{{ url_for('static', filename='img/photo.jpg') }}" alt="Моё фото">
@@ -55,7 +56,7 @@
         <tr>
             <td>100%</td>
             <td>100%</td>
-            <td></td>
+            <td>100%</td>
             <td></td>
             <td></td>
             <td></td>
@@ -64,8 +65,8 @@
         </tr>
         <tr>
             <td>100%</td>
+            <td>100%</td>
             <td>99%</td>
-            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -75,7 +76,7 @@
         <tr>
             <td>Легко дались базовые концепции Flask</td>
             <td>Понравилась работа с CSS-селекторами</td>
-            <td></td>
+            <td>Интересно создавать шаблоны и пользоваться ими</td>
             <td></td>
             <td></td>
             <td></td>
@@ -84,5 +85,7 @@
         </tr>
     </table>
 </div>
+<p><a href="{{ url_for('notes') }}">Дневник программиста</a></p>
+    {% endblock %}
 </body>
 </html>
