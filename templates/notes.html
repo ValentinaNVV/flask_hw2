@@ -4,12 +4,17 @@
 <h1>Дневник программиста</h1>
 <form action="{{ url_for('add_note') }}" method="POST">
     <input type="text" name="title" placeholder="Заголовок">
+    <input type="text" name="subtitle" placeholder="Подзаголовок">
     <textarea name="text" placeholder="Текст записи"></textarea>
     <button type="submit">Добавить запись</button>
 </form>
 <ul>
-{% for title, text in entries.items() %}
-    <li><strong>{{ title }}</strong>: {{ text }}</li>
+{% for note in entries %}
+    <li>
+        <strong>{{ note.title }}</strong>
+        {% if note.subtitle %}<em>({{ note.subtitle }})</em>{% endif %}
+        : {{ note.text }}
+    </li>
 {% endfor %}
 </ul>
 <p><a href="{{ url_for('index') }}">На главную</a></p>
