@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -8,6 +8,7 @@ from datetime import datetime, timedelta
 app = Flask(__name__)
 app.secret_key = "секретный-ключ"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///notes.db"
+app.json.ensure_ascii = False
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
@@ -95,6 +96,49 @@ def add_note():
     db.session.add(new_note)
     db.session.commit()
     return redirect(url_for("notes"))
+
+@app.route('/api/notes', methods=['GET'])
+def get_notes():
+    all_notes = Notes.query.all()
+    result = [
+        {"id": n.id, "title": n.title, "subtitle": n.subtitle, "text": n.text}
+        for n in all_notes
+    ]
+    return jsonify(result)
+
+@app.route('/api/notes/<int:note_id>', methods=['GET'])
+def api_get_note(note_id):
+    note = Notes.query.get_or_404(note_id)
+    return jsonify({"id": note.id, "title": note.title, "subtitle": note.subtitle, "text": note.text})
+
+@app.route('/api/notes', methods=['POST'])
+def api_create_note():
+    data = request.get_json()
+    new_note = Notes(
+        title=data.get("title"),
+        subtitle=data.get("subtitle"),
+        text=data.get("text")
+    )
+    db.session.add(new_note)
+    db.session.commit()
+    return jsonify({"id": new_note.id, "title": new_note.title, "subtitle": new_note.subtitle, "text": new_note.text}), 201
+
+@app.route('/api/notes/<int:note_id>', methods=['PUT'])
+def api_update_note(note_id):
+    note = Notes.query.get_or_404(note_id)
+    data = request.get_json()
+    note.title = data.get("title", note.title)
+    note.subtitle = data.get("subtitle", note.subtitle)
+    note.text = data.get("text", note.text)
+    db.session.commit()
+    return jsonify({"id": note.id, "title": note.title, "subtitle": note.subtitle, "text": note.text})
+
+@app.route('/api/notes/<int:note_id>', methods=['DELETE'])
+def api_delete_note(note_id):
+    note = Notes.query.get_or_404(note_id)
+    db.session.delete(note)
+    db.session.commit()
+    return jsonify({"message": "Удалено успешно"}), 200
 
 if __name__ == "__main__":
     app.run(debug=True)
